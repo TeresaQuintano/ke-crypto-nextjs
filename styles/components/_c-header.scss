@@ -25,4 +25,7 @@
   i {
     font-size: rem(22);
   }
+  @include mq($bp-tablet) {
+    right: rem(30);
+  }
 }

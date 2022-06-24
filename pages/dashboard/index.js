@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import styles from '../../styles/Home.module.scss'
 import { GlobalPosition, StockList } from '../../components';
 import { Button } from '../../components';
 import { useApp } from '../../context/AppContext';
@@ -34,7 +33,7 @@ export default function Dashboard() {
 
 
 
-        <main className={styles.main}>
+        <main>
 
           {hasError ? renderError : renderDashboard}
 

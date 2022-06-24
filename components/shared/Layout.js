@@ -1,11 +1,10 @@
 import React from 'react';
 import { Header } from './Header';
 import { Navigation } from './Navigation';
-import styles from '../../styles/Home.module.scss';
 import Head from 'next/head';
 
 const Layout = ({children}) => (
-    <div className={styles.container}>
+    <>
       <Head>
         <meta charSet="utf-8"/>
         <title>Ke-Crypto</title>
@@ -22,20 +21,15 @@ const Layout = ({children}) => (
         />
       </Head>
 
-      <main className={styles.main}>
-
-        <div className="app-wrapper">
-          <div className="layout-wrapper">
-            <Header/>
-            <main className="layout-wrapper__main-content">{children}</main>
-            <Navigation/>
-          </div>
+      <div className="app-wrapper">
+        <div className="layout-wrapper">
+          <Header/>
+          <main className="layout-wrapper__main-content">{children}</main>
+          <Navigation/>
         </div>
+      </div>
 
-
-      </main>
-
-    </div>
+    </>
 
 );
 export default Layout;
