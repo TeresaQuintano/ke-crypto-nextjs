@@ -1,20 +1,10 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
-import { render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { Alert, Button } from '../../../components';
-import ReactDOM from 'react-dom/client';
+import { Alert } from '../../../components';
 import { createContainer, createContainerDom } from '../../test-utils';
 
-let container;
-
-// it('Alert component', () => {
-//   const alert = create(<Alert/>);
-//   expect(alert.toJSON()).toMatchSnapshot();
-// });
 beforeEach(() => {
   createContainerDom()
-
 });
 describe('Alert', () => {
 

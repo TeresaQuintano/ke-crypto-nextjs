@@ -1,24 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createContainer, createContainerDom } from './test-utils';
 import { act } from 'react-dom/test-utils';
-import { render, screen, Providers } from "./test-utils";
 import App from '../pages/_app'
 
-
-let container;
 beforeEach(() => {
-  container = document.createElement('div');
-  document.body.appendChild(container);
+  createContainerDom()
 });
-describe('Home', () => {
-  it('renders a heading', async() => {
-    const getLayout = App.getLayout || ((page) => page);
-    ReactDOM.createRoot(container).render(getLayout);
+describe('App', () => {
+  const getLayout = App.getLayout || ((page) => page);
 
+  it('renders a button', () => {
+    act(() => {
+      createContainer(getLayout());
+    });
 
-    await act(async () => {
-      const button = await screen.findByText('Show all transactions')
-      expect(button).toBeInTheDocument()
-    })
+    const button = document.getElementById('showMore');
+
+    expect(button.textContent).toBe('showMore')
   })
 })
