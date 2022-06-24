@@ -1,0 +1,11 @@
+.p-dashboard__wrapper {
+  background: $color-full-light;
+  width: 100%;
+  border-top-left-radius: rem(30);
+  border-top-right-radius: rem(30);
+  padding: rem(32);
+  @include mq($bp-tablet) {
+    border: rem(1) solid $color-main-gray;
+  }
+
+}

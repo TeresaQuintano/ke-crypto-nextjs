@@ -1,0 +1,15 @@
+.c-profile {
+  display: flex;
+  align-items: center;
+}
+.c-profile__avatar {
+  border-radius: 50%;
+  width: rem(26);
+  height: auto;
+  margin-right: rem(8);
+}
+.c-profile__username {
+
+font-weight: 500;
+line-height: rem(18.75);
+}

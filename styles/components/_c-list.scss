@@ -1,0 +1,95 @@
+.c-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rem(87);
+}
+.c-list--error {
+  min-height: rem(470);
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+.c-list--error__message {
+  font-size: rem(24);
+  text-align: center;
+  color: $color-secondary;
+}
+.c-list__title {
+  color: $color-text-lighter;
+  margin-bottom: rem(36);
+  font-size: rem($font-medium);
+}
+.c-list-items {
+  @extend %unlist;
+}
+
+.c-list__item {
+  display: flex;
+  width: 100%;
+  margin-bottom: rem(24);
+}
+
+.c-list__item-logo {
+  width: rem(40);
+  height: rem(40);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: rem(24);
+
+}
+
+.c-list__item-logo--Bitcoin {
+  background-image: url("./../icons/Bitcoin-logo.svg");
+}
+
+.c-list__item-logo--Ethereum {
+  background-image: url("./../icons/Ethereum-logo.svg");
+}
+
+.c-list__item-logo--Cardano {
+  background-image: url("./../icons/Cardano-logo.svg");
+}
+
+.c-list__item-logo--Terra {
+  background-image: url("./../icons/Terra-logo.svg");
+}
+
+.c-list__item-details {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% - 40px);
+}
+
+.c-list__item-detail {
+  width: 50%;
+
+  &:nth-child(even) {
+    margin-right: auto;
+    text-align: right;
+  }
+}
+
+.c-list__item-name,
+.c-list__item-stock {
+  font-size: rem($font-medium);
+}
+.c-list__item-name {
+  font-weight: 500;
+  margin-bottom: rem(4);
+}
+
+.c-list__item-stock {
+  color: $color-text-default
+}
+
+.c-list__item-sku {
+  color: $color-text-lighter;
+}
+
+.c-list__item-variant--positive {
+  color: $color-highlighter
+}
+
+.c-list__item-variant--negative {
+  color: $color-secondary
+}

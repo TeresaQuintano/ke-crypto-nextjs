@@ -1,0 +1,73 @@
+.c-navigation-wrapper {
+  @include mq($bp-tablet) {
+    width: 30%;
+    background-color: transparent;
+    align-self: center;
+    justify-content: center;
+    padding-bottom: 0;
+    margin-top: rem(20);
+    display: flex;
+    transform: translateX(-20px);
+  }
+  @include mq($bp-desktop-hd) {
+    //margin-right: 12%;
+    //transform: translateX(-120px);
+  }
+}
+.c-navigation {
+  background-color: $color-full-light;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 rem(16) rem(28) rem(16);
+  margin: 0;
+  ul {
+    @extend %unlist;
+  }
+  @include mq($bp-tablet) {
+    display: inline-block;
+    background-color: transparent;
+    padding-top: 40px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @include mq($bp-desktop) {
+    top: rem(20);
+    transform: translateY(rem(-20));
+  }
+}
+
+.c-navigation__link {
+  padding: rem(20);
+  border-radius: rem(10);
+  border: rem(1) solid $color-primary;
+  display: flex;
+  align-content: center;
+  text-decoration: none;
+  background-color: $color-full-light;
+  cursor: pointer;
+  &:hover,
+  &--active {
+    background-color: $color-primary;
+    border-color: $color-full-light;
+
+    & .c-navigation__icon {
+      color: $color-full-light;
+    }
+  }
+  @include mq($bp-tablet) {
+    margin-bottom: rem(30);
+  }
+}
+.c-navigation__item:not(:last-child) {
+  @include mq($bp-tablet) {
+    margin-bottom: rem(30);
+  }
+}
+
+.c-navigation__icon {
+  font-size: rem(22);
+  color: $color-primary;
+  line-height: 1;
+}

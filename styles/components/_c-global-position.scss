@@ -1,0 +1,25 @@
+.c-global-position {
+  text-align: center;
+  margin-bottom: rem(32);
+  @include mq($bp-tablet) {
+    margin-bottom: rem(16);
+  }
+}
+
+.c-global-position__title {
+  font-size: rem($font-default);
+  color: $color-primary-lighter;
+  margin-bottom: rem(8);
+  @include mq($bp-tablet) {
+    color: $color-darken;
+  }
+
+}
+.c-global-position__quantity {
+  font-size: rem($font-big);
+  color: $color-full-light;
+  font-weight: 400;
+  @include mq($bp-tablet) {
+    color: $color-primary;
+  }
+}

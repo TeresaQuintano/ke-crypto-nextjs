@@ -1,0 +1,25 @@
+.c-button {
+  padding: rem(22) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: $color-primary;
+  color: $color-full-light;
+  border-radius: rem(10);
+  cursor: pointer;
+  border:none;
+
+  &:hover {
+    background-color: $color-secondary;
+  }
+}
+.c-button--only-icon {
+  position: relative;
+  height: rem(20);
+  width: rem(40);
+  padding: rem(20);
+}
+.c-button__icon {
+  padding-right: rem(10);
+}
