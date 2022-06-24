@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch --config ./jest.config.js"
   },
   "dependencies": {
     "next": "12.1.6",
@@ -16,8 +17,25 @@
     "react-number-format": "^4.9.3"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^10.4.9",
+    "babel-jest": "^26.3.0",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.4.2",
+    "react-test-renderer": "^18.2.0",
     "sass": "^1.53.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "src/*/index.js",
+      "src/components/index.js",
+      "src/setupJest.js",
+      "src/reportWebVitals.js"
+    ]
   }
 }
