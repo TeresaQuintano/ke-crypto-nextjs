@@ -1,0 +1,23 @@
+@import 'base/base';
+@import 'core/core';
+@import 'components/components';
+@import 'pages/pages';
+html,
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+html, body, #__next {
+  min-height: 100vh;
+}
