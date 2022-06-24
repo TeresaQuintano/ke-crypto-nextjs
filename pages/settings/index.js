@@ -1,3 +1,5 @@
+import Layout from '../../components/shared/Layout';
+
 function Settings() {
 
   return (
@@ -9,3 +11,6 @@ function Settings() {
   )
 }
 export default Settings
+Settings.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

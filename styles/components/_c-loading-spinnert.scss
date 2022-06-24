@@ -1,0 +1,26 @@
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.c-spinner {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.c-spinner__loading {
+  width: rem(30);
+  height: rem(30);
+  border-top: rem(4) solid $color-primary;
+  border-right: rem(4) solid $color-secondary;
+  border-left: rem(4) solid $color-secondary;
+  border-bottom: rem(4) solid $color-secondary;
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}

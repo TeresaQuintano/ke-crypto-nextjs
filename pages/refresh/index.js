@@ -1,3 +1,5 @@
+import Layout from '../../components/shared/Layout';
+
 function Refresh() {
 
   return (
@@ -9,3 +11,6 @@ function Refresh() {
   )
 }
 export default Refresh
+Refresh.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

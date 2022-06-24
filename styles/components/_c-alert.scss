@@ -1,0 +1,14 @@
+.c-alert {}
+.c-alert__amount {
+  position: absolute;
+  top: 0;
+  right: rem(-8);
+  font-size: 12px;
+  height: rem(20);
+  width: rem(20);
+  color: $color-full-light;
+  background-color: $color-secondary;
+  border-radius: 50%;
+  font-weight: 500;
+  line-height: 20px;
+}

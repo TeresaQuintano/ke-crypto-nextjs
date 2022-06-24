@@ -1,0 +1,28 @@
+.c-header {
+  color: $color-full-light;
+  display: flex;
+  justify-content: center;
+  margin-bottom: rem(23);
+  font-size: rem(16);
+  align-items: center;
+  position: relative;
+  background-color: $color-primary;
+  height: 60px;
+  @include mq($bp-tablet) {
+    width: 100%;
+  }
+  @include mq($bp-desktop) {
+    margin-bottom: 0;
+  }
+}
+.c-header__profile {
+  margin-right: auto;
+  margin-left: auto;
+}
+.c-header__alert {
+  position: absolute;
+  right: rem(10);
+  i {
+    font-size: rem(22);
+  }
+}
