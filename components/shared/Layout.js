@@ -21,7 +21,7 @@ const Layout = ({children}) => (
         />
       </Head>
 
-      <div className="app-wrapper">
+      <div id="layout" className="app-wrapper">
         <div className="layout-wrapper">
           <Header/>
           <main className="layout-wrapper__main-content">{children}</main>

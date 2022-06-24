@@ -2,10 +2,10 @@ import React from 'react';
 import { Profile } from './Profile';
 import { Alert } from './Alert';
 
-export const Header = () => {
+export const Header = (props) => {
   return (
 
-      <header className="c-header">
+      <header className="c-header" >
         <div className="c-header__profile">
           <Profile userName="Anakin"/>
         </div>

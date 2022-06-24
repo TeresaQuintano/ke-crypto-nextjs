@@ -1,9 +1,12 @@
 module.exports = {
   setupFilesAfterEnv: ["./jest.setup.js"],
   collectCoverageFrom: [
-    '**/*.{js,jsx,ts,tsx}',
-    '!**/*.d.ts',
+    'components/**/*.{js,jsx}',
+    'pages/**/*.{js,jsx}',
     '!**/node_modules/**',
+    '!**/.next/**',
+    '!**/coverage/**'
+
   ],
   moduleNameMapper: {
     /* Handle CSS imports (with CSS modules)

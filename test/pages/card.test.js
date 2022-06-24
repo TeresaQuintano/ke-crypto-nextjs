@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import { act } from 'react-dom/test-utils';
 import { screen } from '@testing-library/react';
-import Dashboard from '../../pages/dashboard';
+import Card from '../../pages/dashboard';
 import { createContainer, createContainerDom } from '../test-utils';
 import { AppProvider } from '../../context/AppContext';
+import Layout from '../../components/shared/Layout';
 
 
 beforeEach(() => {
   createContainerDom()
 });
 jest.mock('../../api/api')
-it('Dashboard is rendered without amount', () => {
+it('Card is rendered', () => {
 
-  const totalAmount = jest.fn()
 
   act(() => {
     createContainer(
         <AppProvider value={{totalAmount}}>
-          <Dashboard/>
+          <Layout>{Card}</Layout>;
         </AppProvider>
     );
-    // const component = document.getElementsByClassName('p-dashboard');
 
 
   })

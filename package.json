@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch --config ./config/jest.config.js"
+    "test": "jest --watch --config ./jest.config.js"
   },
   "dependencies": {
     "next": "12.1.6",
@@ -26,5 +26,16 @@
     "jest": "^26.4.2",
     "react-test-renderer": "^18.2.0",
     "sass": "^1.53.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "src/*/index.js",
+      "src/components/index.js",
+      "src/setupJest.js",
+      "src/reportWebVitals.js"
+    ]
   }
 }
