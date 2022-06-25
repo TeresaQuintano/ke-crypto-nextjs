@@ -8,9 +8,8 @@ beforeEach(() => {
 });
 describe('App', () => {
   const getLayout = App.getLayout || ((page) => page);
-
-  it('renders a button', () => {
-    act(() => {
+  it('renders a button', async () => {
+    await act(() => {
       createContainer(getLayout());
     });
 

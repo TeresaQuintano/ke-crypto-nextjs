@@ -118,17 +118,17 @@ perfectamente.
 - **Alert.js:**
   El componente Alert puede recibir por props "amount" como número de notificaciones a mostrar.
   Podéis probarlo con:
-  <code>
+  
   <Alert icon="bell" amount={'5'}/>
-  </code>
+  
 
 
 - **Profile.js:**
   El componente Profile puede recibir por props "avatar" como imagen de avatar del usuario
   Podéis probarlo con:
-  <code>
+  
   <Profile userName="Anakin" avatar={'https://i.pravatar.cc/150?img=6'}/>
-  </code>
+  
 
 
 ## Páginas / Vistas / Como queráis que lo llamemos
@@ -174,45 +174,109 @@ quedé con eso)
 
 Y llega el momento en el que me dispongo a migrar todo el código de Reactjs a Nextjs.
 
-**Lectura de la migración**
+### Lectura de la migración
 
-- Migrar los componentes es bastante sencillo, Next tiene una documentación muy buena y accesible.
+1- Migrar los componentes es bastante sencillo, Next tiene una documentación muy buena y accesible.
 
-- Migrar el Sass tampoco lo es... 
+2- **Migrar el Sass también lo es...** 
 
-Bueno, no es cierto. He intentado hacer modules aplicando los 
-<code>{styles}</code> 
-y ha sido bastante complicado. No he encontrado documentación suficiente de cómo pasar los ternarios en classNames={styles.}... Así que se ha quedado de manera global.
+Bueno, no es cierto. Empecé haciendo modules sass y aplicando los 
+<code>{styles}</code> pero me parecía que enguarraba mucho el componente cuando tiene ternariso o incluso dos clases ya que se pasan como array,
+Al no haber encontrado documentación suficiente de cómo pasar los ternarios en <code>classNames={styles.miComponente}</code>. Lo he dejado de manera global.
 
-- El Router... ¡Ay el router! 
-En React yo tenía propuesto este router:
-  <code>
+3- **El Router... ¡Ay el router!**
 
-<Route path={DASHBOARD} element={<Dashboard/>}/>
+En el repo de React yo tenía esta App function:
+```jsx
+function App() {
+  const [isLoading, setIsLoading] = React.useState(true);
 
-<Route path={REFRESH} element={<PageToDo pageTitle='Refresh'/> }/>
+  const handleLoading = () => {
+    setIsLoading(false);
+  }
 
-<Route path={CARD} element={<PageToDo pageTitle='Card'/> }/>
+  useEffect(()=>{
+    window.addEventListener('load',handleLoading);
+    return () => window.removeEventListener('load',handleLoading);
+  },[])
 
-<Route path={SETTINGS} element={<PageToDo pageTitle='Settings'/> }/>
+  return (
+    !isLoading ? (
+      <SessionProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path={DASHBOARD} element={<Dashboard/>}/>
+              <Route path={REFRESH} element={<PageToDo pageTitle='Refresh'/> }/>
+              <Route path={CARD} element={<PageToDo pageTitle='Card'/> }/>
+              <Route path={SETTINGS} element={<PageToDo pageTitle='Settings'/> }/>
+              <Route path={NOTIFICATIONS} element={<PageToDo pageTitle='Notifications'/> }/>
+              <Route path={DEFAULT} element={<Navigate to={DASHBOARD}/>}/>
+            </Routes>
+          </Layout>
+        </Router>
+      </SessionProvider>
+    ):(<LoadingSpinner/>)
+  );
+}
 
-<Route path={NOTIFICATIONS} element={<PageToDo pageTitle='Notifications'/> }/>
-
-<Route path={DEFAULT} element={<Navigate to={DASHBOARD}/>}/>
-</code>
-
-De manera que por props las páginas que no eran Dashboard llamaban a un componente PageToDo y recogían el título, evitando así la generación de nuevas páginas que simplemente están para la navegación, pero hay que desarrollar a futuro.
-
-La app iba envuelta de esta manera: SessionProvider > Router > Layout
-
-En Next, al ir las páginas en función del árbol de directorio, he tenido que crear las vistas para la navegación...
-
-Seguro que habrá una manera de hacerlo igual que en react pero no he dado con ello en el tiempo que tenía.
-
-En Next la app iba envuelta así: getLayout > AppProvider >  <Component {...pageProps} />  Donde getLayout decora el layout de cada vista antes de pasar el contexto
+export default App;
 
 
- - Los test: complicados ambos, pero me han reportado mucho aprendizaje y sobre todo me han quitado el miedo. Lo vemos ahora. 
+```
+
+Cargaba un loading
+De manera que por <code>{props}</code> las páginas que no eran Dashboard llamaban a un componente PageToDo y recogían el título, evitando así la generación de nuevas páginas que simplemente están para la navegación, pero hay que desarrollar a futuro.
+
+La app iba envuelta de esta manera:
+```jsx
+<SessionProvider>
+  <Router>
+    <Layout>
+      <Routes>
+```
+
+
+Peo en Next, al ir las rutas en función del orden que tenga el de directorio de pages, he tenido que crear las vistas para la navegación porque no he dado con la manera de pasarle por <code>
+{props}</code>. el titulo como tenía en react. Seguro que se puede hacer pero no he dado con ello en el tiempo que tenía.
+
+En Next la app queda envuelta así: 
+```jsx
+function MyApp({Component, pageProps}) {
+  const [totalAmount, setTotalAmount] = useState();
+  const [hasError, setHasError] = useState(false);
+
+  const getLayout = Component.getLayout || ((page) => page);
+
+
+  return getLayout(
+      <AppProvider
+          value={{
+            state: {
+              totalAmount: totalAmount,
+
+              hasError: hasError,
+            },
+            setTotalAmount: setTotalAmount,
+            setHasError: setHasError,
+          }}
+      >
+        <Component {...pageProps} />
+      </AppProvider>)
+}
+```
+
+Donde getLayout decora el layout de cada vista antes de pasar el contexto
+```jsx
+// Enlas vistas que tiran de layout
+Dashboard.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
+```
+
+4 - **Los test: me quito el miedo** 
+
+Complicados ambos, pero me han reportado mucho aprendizaje y sobre todo me han quitado el miedo. Lo vemos ahora. 
 
 
 
@@ -220,24 +284,48 @@ En Next la app iba envuelta así: getLayout > AppProvider >  <Component {...page
 
 No tengo mucha experiencia en desarrollar test, te lo comentaba el otro día @roberto, pero os quiero agradecer esta oportunidad porque he aprendido muchísimo.
 
-Los test, han sido lo que más me ha costado con diferencia. La parte del desarrollo que más tiempo me ha llevado (un 40%) El no saber por
-dónde empezar.
+Los test, han sido sin lugar a duda lo que más me ha costado desarrollar. Lo que más tiempo me ha llevado, estimo que un 40%-50% del total
+
+
+Aún así en el repo de React llego a
+<code>
+All files                 |   64.78 |    45.83 |   60.71 |   63.76 |
+</code>
+
+Pero en el de next:
+<code>
+All files             |   56.06 |       50 |   45.16 |   56.92 |     
+</code>
 
 La parte más complicada ha sido la documentación de react 18 con el método create porque ya no se puede usar.
 
 Por esta razón, me ha costado mucho poder renderizar cualquier componente aú siendo 'tonto'. 
 
-Cuando he dado con la solución y para poder reutilizarlo he añadido unos métodos en test/test-utils.js donde se exporta la creación de los componentes según React 18. 
+Cuando he dado con la solución y para poder reutilizarlo he añadido unos métodos en **test/test-utils.js** donde se exporta la creación de los componentes según React 18. 
 
-En test/test-utils.js hay otros métodos sacados de Stackoverflow que no me han funcionado pero los he dejado porque quiero dar con la solución a futuro...
+````jsx
+import ReactDOM from 'react-dom/client';
+let container;
 
-He probado de mil maneras poder mockear el provider pero como además llevaba el Layout he tenido mucha dificultad, de hecho no he podido sacarlo.
+export const createContainerDom = () => {
+  container = document.createElement('div');
+  document.body.appendChild(container);
+}
+
+export const createContainer= (component) => {
+  return  ReactDOM.createRoot(container).render(component);
+}
+````
+
+En ese archivo de utils, hay otros métodos sacados de Stackoverflow que los he dejado porque quiero probarlos a futuro...
+
+
+En next, he probado de mil maneras mockear el provider para los test de las páginas pero como además llevaba el Layout he tenido mucha dificultad, de hecho no he podido sacarlo.
 
 Lo seguiré intentando porque honestamente, tengo clavada la espinita.
 
-Como las páginas dependían de getLayout (que hace que carguen todas con lo mismo layout) tampoco he podido sacar los test de las páginas.
-
-Aún con todos los impedimentos y el tiempo que disponía para hacer el challenge, he llegado al 56.06. Se que es poco, pero yo estoy muy muy contenta. ¡Pero mucho!
+Aún con todos los impedimentos y el tiempo que disponía para hacer el challenge, he llegado al 64.78 en React y al 56.06. en Next.
+Se que no llega al 80%, pero yo estoy muy contenta. ¡Pero mucho!
 
 
 
@@ -254,10 +342,8 @@ Supongo que hay cosas que mejorar pero para ser mi primer Next estoy contenta.
 
 # The End:
 
-Muchas gracias nuevamente por darme esta oportunidad. Espero feedback constructivo del trabajo realizado. Sed benevolentes!!!
+Muchas gracias nuevamente por darme esta oportunidad. Espero feedback tanto positivo como constructivo del trabajo realizado. Sed benevolentes!!!
 
 Un abrazo!
 
 Teresa Quintano
-
-###End
