@@ -1,0 +1,11 @@
+@function px($px) {
+  @return $px * 1px;
+}
+
+@function em($px, $context: $font-default) {
+  @return $px / $context * 1em;
+}
+
+@function rem($px, $context: $font-default) {
+  @return $px / $context * 1rem;
+}

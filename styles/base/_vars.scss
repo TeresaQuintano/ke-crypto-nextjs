@@ -1,0 +1,22 @@
+$color-primary: #000259;
+$color-primary-lighter: #999ABD;
+$color-full-light: #ffffff;
+$color-light: #fafafa;
+$color-main-gray: #C4C4C4;
+$color-darken : #333;
+$color-secondary: #A60067;
+$color-highlighter: #00C49A;
+$color-text-default: #000000;
+$color-text-lighter: #82838B;
+
+$font-default: 16;
+$font-medium: 18;
+$font-big: 36;
+$font-RobotoR: 'Roboto';
+
+$bp-tablet: 768;
+$bp-below-tablet: $bp-tablet - 1; // 767
+$bp-desktop: 1024;
+$bp-below-desktop: $bp-desktop - 1; // 1023
+$bp-desktop-hd: 1200;
+$bp-below-desktop-hd: $bp-desktop-hd - 1; // 1199

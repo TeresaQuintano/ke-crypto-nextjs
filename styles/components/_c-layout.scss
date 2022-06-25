@@ -1,0 +1,36 @@
+.app-wrapper {
+  background: $color-primary;
+  height: 100%;
+}
+.layout-wrapper {
+  background: $color-primary;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: rem(360);
+  margin: 0 auto;
+
+
+  @include mq($bp-tablet) {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: $color-light;
+  }
+
+
+}
+.layout-wrapper__main-content {
+  @include mq($bp-tablet) {
+    width: 60%;
+    margin-left: 10%;
+    padding: rem(23);
+    min-height: calc(100vh - 60px);
+  }
+
+  @include mq($bp-desktop) {
+    width: rem(480);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
