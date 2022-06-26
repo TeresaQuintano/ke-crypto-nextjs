@@ -761,9 +761,4 @@ a {
   box-sizing: border-box;
 }
 
-html, body, #__next {
-  min-height: 100vh;
-  height: 100%;
-}
-
 /*# sourceMappingURL=globals.css.map */
