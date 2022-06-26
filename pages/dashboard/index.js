@@ -1,6 +1,4 @@
-import Head from 'next/head';
-import { GlobalPosition, StockList } from '../../components';
-import { Button } from '../../components';
+import { Button, GlobalPosition, StockList } from '../../components';
 import { useApp } from '../../context/AppContext';
 import Layout from '../../components/shared/Layout';
 
@@ -32,13 +30,12 @@ export default function Dashboard() {
   return (
 
 
+      <main>
 
-        <main>
-
-          {hasError ? renderError : renderDashboard}
+        {hasError ? renderError : renderDashboard}
 
 
-        </main>
+      </main>
 
   )
 }

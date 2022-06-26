@@ -331,8 +331,8 @@ Se que no llega al 80%, pero yo estoy muy contenta. ¡Pero mucho!
 
 ## Los repos:
 
-Por si queréis echar un ojo al repo de react + nodejs os dejo el enlace:
-https://github.com/TeresaQuintano/kelisto-frontend-js-challenge-crypto
+Por si queréis echar un ojo al repo de react + nodejs (fetaure/ke-crypto) os dejo el enlace:
+https://github.com/TeresaQuintano/kelisto-frontend-js-challenge-crypto/tree/fetaure/ke-crypto
 
 Os envío este repo porque creo que Next es un plus. Y creo que haber hecho el upgrade con éxito es suficiente razón para compartirlo.
 
